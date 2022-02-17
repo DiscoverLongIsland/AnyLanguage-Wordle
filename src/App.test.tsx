@@ -5,9 +5,9 @@ import { WORDS } from './constants/wordlist'
 import { ORTHOGRAPHY_PATTERN } from './lib/tokenizer'
 import { CONFIG } from './constants/config'
 
-test('renders Not Wordle', () => {
+test('renders LongIslandle', () => {
   render(<App />)
-  const linkElement = screen.getByText(/Not Wordle/i)
+  const linkElement = screen.getByText(/LongIslandle/i)
   expect(linkElement).toBeInTheDocument()
 })
 
