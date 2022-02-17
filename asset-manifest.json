@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/LongIslandle/static/css/main.2f051238.css",
-    "main.js": "/LongIslandle/static/js/main.6a8c2909.js",
+    "main.js": "/LongIslandle/static/js/main.0d90c1f5.js",
     "static/js/787.817d3551.chunk.js": "/LongIslandle/static/js/787.817d3551.chunk.js",
     "static/media/BCSans-Bold.woff": "/LongIslandle/static/media/BCSans-Bold.252ecf87ea37c93b293c.woff",
     "static/media/BCSans-BoldItalic.woff": "/LongIslandle/static/media/BCSans-BoldItalic.73ed5137b2c4a42b754f.woff",
@@ -10,11 +10,11 @@
     "index.html": "/LongIslandle/index.html",
     "static/media/getFetch.cjs": "/LongIslandle/static/media/getFetch.c780682470504fffbd04.cjs",
     "main.2f051238.css.map": "/LongIslandle/static/css/main.2f051238.css.map",
-    "main.6a8c2909.js.map": "/LongIslandle/static/js/main.6a8c2909.js.map",
+    "main.0d90c1f5.js.map": "/LongIslandle/static/js/main.0d90c1f5.js.map",
     "787.817d3551.chunk.js.map": "/LongIslandle/static/js/787.817d3551.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2f051238.css",
-    "static/js/main.6a8c2909.js"
+    "static/js/main.0d90c1f5.js"
   ]
 }
