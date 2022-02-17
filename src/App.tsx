@@ -1,5 +1,6 @@
 import { InformationCircleIcon } from '@heroicons/react/outline'
 import { ChartBarIcon } from '@heroicons/react/outline'
+import { TranslateIcon } from '@heroicons/react/outline'
 import { useState, useEffect } from 'react'
 import { Alert } from './components/alerts/Alert'
 import { Grid } from './components/grid/Grid'
@@ -133,13 +134,24 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
         setIsGameLost(true)
       }
     }
- 
+  }
+  let translateElement = <div></div>
+  if (CONFIG.availableLangs.length > 1) {
+    translateElement = (
+      <TranslateIcon
+        className="h-6 w-6 cursor-pointer"
+        onClick={() => setIsI18nModalOpen(true)}
+      />
+    )
+  }
+
   return (
     <div className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div className="flex w-80 mx-auto items-center mb-8">
         <h1 className="text-xl grow font-bold">
-         LongIslandle </h1>
-        
+          Not Wordle - {CONFIG.language}
+        </h1>
+        {translateElement}
         <InformationCircleIcon
           className="h-6 w-6 cursor-pointer"
           onClick={() => setIsInfoModalOpen(true)}
@@ -155,6 +167,10 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
         onDelete={onDelete}
         onEnter={onEnter}
         guesses={guesses}
+      />
+      <TranslateModal
+        isOpen={isI18nModalOpen}
+        handleClose={() => setIsI18nModalOpen(false)}
       />
       <InfoModal
         isOpen={isInfoModalOpen}
