@@ -16,15 +16,12 @@ import {
   loadGameStateFromLocalStorage,
   saveGameStateToLocalStorage,
 } from './lib/localStorage'
-
 import { CONFIG } from './constants/config'
 import ReactGA from 'react-ga'
 import '@bcgov/bc-sans/css/BCSans.css'
 import './i18n'
 import { withTranslation, WithTranslation } from 'react-i18next'
-
 const ALERT_TIME_MS = 2000
-
 const App: React.FC<WithTranslation> = ({ t, i18n }) => {
   const [currentGuess, setCurrentGuess] = useState<Array<string>>([])
   const [isGameWon, setIsGameWon] = useState(false)
@@ -52,19 +49,15 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
     }
     return loaded.guesses
   })
-
   const TRACKING_ID = CONFIG.googleAnalytics // YOUR_OWN_TRACKING_ID
-
   if (TRACKING_ID && process.env.NODE_ENV !== 'test') {
     ReactGA.initialize(TRACKING_ID)
     ReactGA.pageview(window.location.pathname)
   }
   const [stats, setStats] = useState(() => loadStats())
-
   useEffect(() => {
     saveGameStateToLocalStorage({ guesses, solution })
   }, [guesses])
-
   useEffect(() => {
     if (isGameWon) {
       setSuccessAlert(
@@ -81,7 +74,6 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
       }, ALERT_TIME_MS)
     }
   }, [isGameWon, isGameLost])
-
   const onChar = (value: string) => {
     if (
       currentGuess.length < CONFIG.wordLength &&
@@ -92,11 +84,9 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
       setCurrentGuess(newGuess)
     }
   }
-
   const onDelete = () => {
     setCurrentGuess(currentGuess.slice(0, -1))
   }
-
   const onEnter = () => {
     if (isGameWon || isGameLost) {
       return
@@ -107,7 +97,6 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
         setIsNotEnoughLetters(false)
       }, ALERT_TIME_MS)
     }
-
     if (!isWordInWordList(currentGuess.join(''))) {
       setIsWordNotFoundAlertOpen(true)
       return setTimeout(() => {
@@ -115,7 +104,6 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
       }, ALERT_TIME_MS)
     }
     const winningWord = isWinningWord(currentGuess.join(''))
-
     if (
       currentGuess.length === CONFIG.wordLength &&
       guesses.length < CONFIG.tries &&
@@ -123,12 +111,10 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
     ) {
       setGuesses([...guesses, currentGuess])
       setCurrentGuess([])
-
       if (winningWord) {
         setStats(addStatsForCompletedGame(stats, guesses.length))
         return setIsGameWon(true)
       }
-
       if (guesses.length === CONFIG.tries - 1) {
         setStats(addStatsForCompletedGame(stats, guesses.length + 1))
         setIsGameLost(true)
@@ -144,12 +130,12 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
       />
     )
   }
-
   return (
     <div className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div className="flex w-80 mx-auto items-center mb-8">
+		 <div className="flex w-80 mx-auto items-center mb-8">
         <h1 className="text-xl grow font-bold">
           Not Wordle - {CONFIG.language}
+         LongIslandle
         </h1>
         {translateElement}
         <InformationCircleIcon
@@ -192,7 +178,6 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
         isOpen={isAboutModalOpen}
         handleClose={() => setIsAboutModalOpen(false)}
       />
-
       <button
         type="button"
         className="mx-auto mt-8 flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 select-none"
@@ -200,7 +185,6 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
       >
         {t('about')}
       </button>
-
       <Alert message={t('notEnoughLetters')} isOpen={isNotEnoughLetters} />
       <Alert message={t('wordNotFound')} isOpen={isWordNotFoundAlertOpen} />
       <Alert message={t('solution', { solution })} isOpen={isGameLost} />
@@ -212,5 +196,4 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
     </div>
   )
 }
-
 export default withTranslation()(App)
