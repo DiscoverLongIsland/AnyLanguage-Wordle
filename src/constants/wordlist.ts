@@ -2,6 +2,7 @@ import { CONFIG } from './config'
 
 export const WORDS = [
   'bagel',
+  'bagel',
   'delis',
   'parks',
   'buoys',
